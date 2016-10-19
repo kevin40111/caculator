@@ -26,7 +26,10 @@
 			while($index<count($f_operator){
 				/*將字串分別計算(乘除)*/
 				if($f_operator[$index]=="*" || $f_operator[$index]=="/"){
+					$result = cacul($f_operator[$index],$f_data[$index],$f_data[$index+1]);
+					$f_data[$index] = $result;
 					
+					$index++;
 				}
 			}		
 				
