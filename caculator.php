@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--有變更 -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="caculator_CSS.css" media="screen" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -8,6 +9,7 @@
 
 
 <script>
+
 	var formula="";
 	var number_lock=false,dot_lock=true,operator_lock=true;
 	function btn_click(value){
