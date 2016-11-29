@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -36,6 +37,11 @@
 			operator_lock=false;		
 		}
 
+		else if(value == "-"){
+			formula += value;
+
+		}
+
 		else if(value=="result"){
 			SendRequest();
 
@@ -48,7 +54,8 @@
 	  var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			//document.getElementById("formula_display").value = xhttp.responseText;
+			document.getElementById("formula_display").value = xhttp.responseText;
+			//formula = xhttp.responseText;
 			console.log(xhttp.responseText);
 		}
 	  };
@@ -72,9 +79,9 @@
 		</div>
 
 		<div class = "number-area container" >
-			<?for($i=1;$i<=9;$i++):?>
-				<span id=<?="$i"?> onclick = "btn_click(this.id)" class="number btn btn-default"><?=$i;?></span>
-			<?endfor;?>
+			<?for($i=1;$i<=9;$i++){?>
+				<span id=<?= "$i";?> onclick = "btn_click(this.id)" class="number btn btn-default"><?=$i;?></span>
+			<?}?>
 				<span id="0" onclick = "btn_click(this.id)" class="number btn btn-default">0</span>
 				<span id="." onclick = "btn_click(this.id)" class="number btn btn-default">.</span>
 		</div>
