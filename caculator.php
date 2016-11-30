@@ -23,18 +23,18 @@
 		}
 		else if(value=="btnbak"){
 			formula = formula.substring(0,formula.length-1);
-			
+
 		}
 		else if((value=="+" || value=="-" || value=="*" || value=="/") && !operator_lock){
 			formula += value;
 			operator_lock=true;
 			dot_lock=true;
 		}
-		
+
 		else if(value>="0" && value<="9"){
 			formula += value;
 			dot_lock=false;
-			operator_lock=false;		
+			operator_lock=false;
 		}
 
 		else if(value == "-"){
@@ -46,7 +46,7 @@
 			SendRequest();
 
 		}
-		
+
 		document.getElementById("formula_display").value = formula;
 	}
 
@@ -54,9 +54,10 @@
 	  var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("formula_display").value = xhttp.responseText;
+			formula = document.getElementById("formula_display").value = xhttp.responseText;
+
 			//formula = xhttp.responseText;
-			console.log(xhttp.responseText);
+			//console.log(xhttp.responseText);
 		}
 	  };
 	  xhttp.open("GET","caculator_CAC.php?formula="+encodeURIComponent(formula), true);
@@ -72,7 +73,7 @@
 		<div class = "input-area">
 			<input id="formula_display" class = "textBox form-control"  value="" type = "textBox" readonly>
 		</div>
-		
+
 		<div class = "function-area container">
 			<span id="btnC" onclick = "btn_click(this.id)" class="number btn btn-default">ｃ</span>
 			<span id="btnbak" onclick = "btn_click(this.id)" class="number btn btn-default">←</span>
@@ -93,7 +94,7 @@
 			<span id="/" onclick = "btn_click(this.id)" class="number btn btn-default">÷</span>
 			<span id="result" onclick = "btn_click(this.id)" class="number btn btn-default">=</span>
 		</div>
-		
+
 		<div class="clearfix"></div>
 	</div>
 </body>
