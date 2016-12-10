@@ -1,84 +1,84 @@
 <?
-	include "../sql_info/sql_info.php";
+    include "../sql_info/sql_info.php";
 
-	$formula = $_GET["formula"];
-	compute($formula);
-
-
-	function compute($formula){
-		$f_operator = array();
-		$f_data = array();
-
-		$index = 0;
-		$number="";
-
-		for($j=0;$j<strlen($formula);$j++){
-		/*將運算字串分割*/
-			if($formula[$j] == "+" || $formula[$j] == "-" || $formula[$j] == "*" || $formula[$j] == "/"){
-				$index = $j;
-				array_push($f_operator,$formula[$j]);
-				array_push($f_data,$number);
-				$number="";
-			}else{
-				$number.=$formula[$j];
-			}
-		}array_push($f_data,$number);
+    $formula = $_GET["formula"];
+    compute($formula);
 
 
+    function compute($formula){
+        $f_operator = array();
+        $f_data = array();
 
-		//先乘除法
-		//unset
-		//array_value
-		for($i=0;$i<sizeof($f_operator);$i++){
-			if($f_operator[$i]=="*" || $f_operator[$i]=="/"){
-				$f_data[$i] = cacul($f_operator[$i],$f_data[$i],$f_data[$i+1]);
-				unset($f_data[($i+1)]);
-				unset($f_operator[$i]);
-				$f_data = array_values($f_data);
-				$f_operator = array_values($f_operator);
-				$i=-1;
-			}
-		}
+        $index = 0;
+        $number="";
 
-		//後加減法
-		for($i=0;$i<sizeof($f_operator);$i++){
-			if($f_operator[$i]=="+" || $f_operator[$i]=="-"){
-
-				$f_data[$i] = cacul($f_operator[$i],$f_data[$i],$f_data[$i+1]);
-				unset($f_data[($i+1)]);
-				unset($f_operator[$i]);
-				$f_data = array_values($f_data);
-				$f_operator = array_values($f_operator);
-				$i=-1;
-			}
+        for($j=0;$j<strlen($formula);$j++){
+        /*將運算字串分割*/
+            if($formula[$j] == "+" || $formula[$j] == "-" || $formula[$j] == "*" || $formula[$j] == "/"){
+                $index = $j;
+                array_push($f_operator,$formula[$j]);
+                array_push($f_data,$number);
+                $number="";
+            }else{
+                $number.=$formula[$j];
+            }
+        }array_push($f_data,$number);
 
 
-		}
-		echo $f_data[0];
-	}
+
+        //先乘除法
+        //unset
+        //array_value
+        for($i=0;$i<sizeof($f_operator);$i++){
+            if($f_operator[$i]=="*" || $f_operator[$i]=="/"){
+                $f_data[$i] = cacul($f_operator[$i],$f_data[$i],$f_data[$i+1]);
+                unset($f_data[($i+1)]);
+                unset($f_operator[$i]);
+                $f_data = array_values($f_data);
+                $f_operator = array_values($f_operator);
+                $i=-1;
+            }
+        }
+
+        //後加減法
+        for($i=0;$i<sizeof($f_operator);$i++){
+            if($f_operator[$i]=="+" || $f_operator[$i]=="-"){
+
+                $f_data[$i] = cacul($f_operator[$i],$f_data[$i],$f_data[$i+1]);
+                unset($f_data[($i+1)]);
+                unset($f_operator[$i]);
+                $f_data = array_values($f_data);
+                $f_operator = array_values($f_operator);
+                $i=-1;
+            }
 
 
-	function cacul($oper,$valueA,$valueB){
-		$cac_result="";
-		switch ($oper) {
-			case '+':
-				$cac_result = $valueA + $valueB;
-				break;
-			case '-':
-				$cac_result = $valueA - $valueB;
-				break;
-			case '*':
-				$cac_result = $valueA * $valueB;
-				break;
-			case '/':
-				$cac_result = $valueA / $valueB;
-				break;
-			default:
-				echo "error";
-				break;
-		}
+        }
+        echo $f_data[0];
+    }
 
-		return $cac_result;
-	}
+
+    function cacul($oper,$valueA,$valueB){
+        $cac_result="";
+        switch ($oper) {
+            case '+':
+                $cac_result = $valueA + $valueB;
+                break;
+            case '-':
+                $cac_result = $valueA - $valueB;
+                break;
+            case '*':
+                $cac_result = $valueA * $valueB;
+                break;
+            case '/':
+                $cac_result = $valueA / $valueB;
+                break;
+            default:
+                echo "error";
+                break;
+        }
+
+        return $cac_result;
+    }
 
 ?>
