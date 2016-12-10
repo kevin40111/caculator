@@ -1,17 +1,14 @@
 <?
     include "../sql_info/sql_info.php";
-
     $formula = $_GET["formula"];
+    
     compute($formula);
-
-
-    function compute($formula){
+    function compute($formula)
+    {
         $f_operator = array();
         $f_data = array();
-
         $index = 0;
         $number="";
-
         for($j=0;$j<strlen($formula);$j++){
         /*將運算字串分割*/
             if($formula[$j] == "+" || $formula[$j] == "-" || $formula[$j] == "*" || $formula[$j] == "/"){
@@ -58,7 +55,8 @@
     }
 
 
-    function cacul($oper,$valueA,$valueB){
+    function cacul($oper,$valueA,$valueB)
+    {
         $cac_result="";
         switch ($oper) {
             case '+':
